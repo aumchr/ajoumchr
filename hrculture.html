@@ -592,12 +592,7 @@ function submitForm() {
 
 let deleteData = {}; // 취소(삭제) 관련 데이터 저장용 전역 변수
 
-function deleteEntry(time, name) {
-  // ✅ (대기) 라벨 제거
-  const cleanName = name.replace(/\(대기\)/g, '').trim();
-  alert("⚠️ 지금은 취소할 수 없어요. 한배를 탔습니다. 토요일까지 함께해 주세요");
-  if (!confirm(`${cleanName}님의 신청을 삭제 하시겠습니까? 삭제 => 확인`)) return;
-
+function deleteEntry(time, name) 
   const inputName = prompt("🤷‍♂️ 취소(삭제)를 위해 기존에 (오기)입력된 이름 그대로 입력해 주세요:");
   if (!inputName || inputName.trim() !== cleanName) {
     alert("⚠삭제취소. 이름이 미입력되었거나 일치하지 않습니다.");
