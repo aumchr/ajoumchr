@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🚩부여(문화탐방) 참가 신청서</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- jQuery (필수) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- jQuery UI (autocomplete 기능 포함) -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
+  <style>
+    .form-label { width: 120px; }
+    .form-inline .form-control, .form-inline select {
+      flex: 1;
+    }
+    img {
+      width: 100%;
+      border-radius: 10px;
+  }
+  #shownotice {
+      display: none;
+  }
+  .slideshow-container {
+      position: relative;
+      width: 100%;
+      height: 350px;
+      /* 이 값은 이미지 크기에 맞게 조정하세요 */
+      max-width: 600px;
+      margin: auto;
+      overflow: hidden;
+      opacity: 1;
+      transition: opacity 2s ease-in-out;
+  }
+  .slideshow-image {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+  }
+  .visible {
+      opacity: 1;
+  }
+  .watermark {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 21px;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+      z-index: 10;
+  }
+  @media (max-width: 600px) {
+      .watermark {
+          font-size: 18px;
+      }
+  }
+  .carousel-item img { height: 400px; object-fit: cover; 
+  } 
+  .fade-image {
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+  }
+  .fade-image.show {
+    opacity: 1;
+  }
+  .carousel-inner img {
+    width: 100%;
+    height: auto;
+  }
+  .carousel {
+    padding-bottom: 0;
+  } 
+  #entryList td {
+    font-weight: normal;
+    font-size: 0.9rem; /* 기본보다 살짝 작게 */
+  }
+  #entryTableWrapper {
+  max-height: 2500px;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  display: none;
+}
+
+#entryTableWrapper.show {
+  display: block;
+  opacity: 1;
+}
+.reason-option:hover {
+  background-color: #f8d7da !important;
+  border-color: #a92011 !important;
+}
+  /* 선택된 버튼 배경 강조 */
+  .form-check-input:checked + .form-check-label.btn {
+    background-color: #0dcaf0;
+    color: white;
+    border-color: #0dcaf0;
+  }
+
+  .form-check-label.btn {
+    transition: all 0.2s ease;
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+  .carousel-inner img {
+    height: 300px;
+    object-fit: cover;
+  }
+  </style>
+</head>
+<body class="bg-light">
+<!-- <div class="mb-4 position-relative" style="height: 400px; overflow: hidden;">
+  <img id="randomImage" class="position-absolute w-90 h-90 object-fit-cover fade-image" src="" alt="랜덤 산 이미지" />
+</div> -->
+<!-- 이미지 슬라이드 -->
+<div id="mainCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+  <!-- 슬라이드 인디케이터 (동그라미) -->
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
+    <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button>
+    <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="3"></button>
+    <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="4"></button>
+    <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="5"></button>
+  </div>
+
+  <!-- 슬라이드 이미지 영역 -->
+  <div class="carousel-inner rounded shadow">
+    <div class="carousel-item active">
+      <img src="https://postfiles.pstatic.net/MjAyMTExMDhfMjY0/MDAxNjM2MzM0NTQ3OTEy.LtkWP1c-LS48S7DAUCvCKP8c8J4aBti1gq4geH9AljIg.aZvxR1BwAch1dBjRNXKthjEU-zl_jGqMGoOjqHKM_nEg.JPEG.sparkling_701/SE-e4268357-fca0-4752-ad26-a4ef7669f6c1.jpg?type=w773"슬라이드1">
+  </div>
+
+  <!-- 좌우 이동 버튼 -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">이전</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">다음</span>
+  </button>
+</div>
+<div class="container py-3">
+  <h5><b>📢10월 부여 문화탐방 안내</b>
+</h5><br>
+<p>
+    10월 부여 문화탐방입니다. 아래 일정을 참고하시어 신청해 주세요. <br><br>
+    📅 일시: 2025. 10. 18(토) 7시30분 ~ 18시<br>
+    🏕 장소 : 부여 <br> 
+       - 의료원 집합 - 식사 <br>
+         📌 중식 제공 <br>
+
+    💳 참가비: 100만원<br>
+    📅신청기간:   ~ 9.23(화)까지<br>
+    📌선착순 180명까지 참석 가능합니다.
+    <br> 
+</p>  
+<hr>
+  <h5 class="text-center mb-3">⛰ 참가 신청서</h5>
+  <div class="card p-4 shadow">
+    <div class="mb-2 d-flex align-items-center form-inline">
+      <label class="form-label">👤 성명*</label>
+      <input type="text" class="form-control" id="name">
+    </div>
+
+    <div class="mb-2 d-flex align-items-center form-inline">
+      <label class="form-label">📱 연락처*</label>
+      <input type="tel" class="form-control" id="contact" placeholder="숫자만 입력" required>
+    </div>
+
+    <div class="mb-2 d-flex align-items-center form-inline">
+      <label class="form-label">👥 참가인원*</label>
+      <select class="form-select" id="participants" required>
+        <option value="">✔선택</option>
+        <option value="1">1명</option>
+        <option value="2">2명</option>
+        <option value="3">3명</option>
+        <option value="4">4명</option>
+        <option value="5">5명</option>
+      </select>
+    </div>
+    
+    <div class="mb-3 align-items-center">
+      <label class="form-label" style="min-width: 250px;">✨참가인원중 비회원은?</label>
+      <select class="form-select" id="nonMembers">
+        <option value="">✔선택</option>
+        <option value="0">0명</option>
+        <option value="1">1명</option>
+        <option value="2">2명</option>
+        <option value="3">3명</option>
+        <option value="4">4명</option>
+        <option value="5">5명</option>
+      </select>
+    </div>
+    
+
+    <div class="mb-2 d-flex align-items-center form-inline" id="memberNamesGroup" style="display: none;">
+        <label class="form-label">👬 동반참석자</label>
+        <input type="text" class="form-control" id="memberNames" placeholder="동반참석자(쉼표로 구분)">
+      </div>
+      
+
+    <!-- <div class="mb-2 d-flex align-items-center form-inline">
+      <label class="form-label">🗺 단일 코스</label>
+      <select class="form-select" id="course">
+        <option value="">✔선택하세요</option>
+        <option>단일 코스(정상 ~ 원점회귀)</option>
+        <option>B코스(조망 코스)</option>
+      </select>
+    </div> -->
+    <select class="form-select" id="course" disabled>
+  <option>단일 코스(정상 ~ 원점회귀)</option>
+</select>
+<input type="hidden" name="course" value="단일 코스(정상 ~ 원점회귀)">
+
+
+    <div class="mb-3 align-items-center">
+      <label class="form-label">🗨️기타 코멘트</label>
+      <input type="text" class="form-control" placeholder="선택 사항입니다." id="comment">
+    </div>
+    <button class="btn btn-primary w-100" onclick="submitForm()" >📥 신청하기</button> 
+  </div>
+    <br>
+  <span class="mt-3"><mark>
+    💬취소 또는 변경(취소 후 재신청)은 아래
+    <button class="btn btn-outline-primary btn-sm" onclick="alert('🤷‍♂️신청내역 ⬇⬇아래  버튼을 터치해 주세요')">🔎신청현황보기</button>
+    에서 진행해 주세요.
+    <br>
+  </mark>
+  </span>
+
+  <br>
+   <button id="toggleEntryListBtn" class="btn btn-outline-primary">🔎신청현황보기</button> 
+     <div class="d-flex justify-content-between align-items-center mt-4">
+    <h6 class="mb-0">📋 신청 내역(*신청역순)</h6>
+   <span id="totalCount" class="text-primary" style="font-size: medium;"></span>
+  </div>
+  <hr>
+  <div id="entryTableWrapper" style="display: none;">
+     <!-- 신청내역검색창 -->
+  <div class="mb-3">
+    <input type="text" id="searchInput" class="form-control" placeholder="🔍 이름으로 검색 (*키워드 일부입력 검색가능)">
+  </div>
+
+    <table class="table table-bordered text-center mt-2">
+      <thead class="table-dark">
+        <tr>
+          <th>성명</th>
+          <th>인원</th>
+          <th>코스</th>
+          <th>취소하기</th>
+        </tr>
+      </thead>
+      <tbody id="entryList"></tbody>
+    </table>
+  </div>
+
+<!-- 삭제 사유 선택 모달-->
+<div class="modal fade" id="reasonModal" tabindex="-1" aria-labelledby="reasonModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-info text-white">
+        <h5 class="modal-title" id="reasonModalLabel">📝 취소 사유를 선택해 주세요</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
+      </div>
+      <div class="modal-body">
+        <form id="reasonForm" class="d-grid gap-2">
+
+          <!-- 각 항목은 버튼처럼 보이는 라디오 -->
+          <div class="form-check">
+            <input class="form-check-input d-none" type="radio" name="deleteReason" id="reason1" value="잘못 신청함" required>
+            <label class="form-check-label btn btn-outline-danger w-100 text-start fw-bold" for="reason1">
+              ❌ 잘못 신청함
+            </label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input d-none" type="radio" name="deleteReason" id="reason2" value="인원 변경">
+            <label class="form-check-label btn btn-outline-warning w-100 text-start fw-bold" for="reason2">
+              🤵 인원 변경
+            </label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input d-none" type="radio" name="deleteReason" id="reason3" value="개인 사정">
+            <label class="form-check-label btn btn-outline-secondary w-100 text-start fw-bold" for="reason3">
+              🤷‍♀️ 개인 사정
+            </label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input d-none" type="radio" name="deleteReason" id="reason4" value="기타">
+            <label class="form-check-label btn btn-outline-primary w-100 text-start fw-bold" for="reason4">
+              💬 기타
+            </label>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button id="confirmDelete" class="btn btn-info w-100 fw-bold">✔ 신청하기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--모달창생성-->
+<!-- ✅ 모달 HTML -->
+<!-- <div class="modal fade" id="gatheringModal" tabindex="-1" aria-labelledby="gatheringModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header bg-primary text-white rounded-top-4">
+        <h5 class="modal-title" id="gatheringModalLabel">🎉산악회동아리 단합대회&신입회원 환영회</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="닫기"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>📅 일시:</strong> 2025년 6월 30일 (월) 오후 5시30분~</p>
+        <p><strong>📍 장소:</strong> 원천식당</p>
+        <p><strong>💰 지참금(급여공제):</strong> 1만원(단, 올해 신입회원은 공짜)</p>
+        <p>✔️참석 여부를 아래 버튼을 눌러 🗨️문자로 보내주세요. <strong>회장</strong>에게 전송됩니다.</p>
+      </div>
+      <div class="modal-footer flex-column gap-2">
+        <div class="d-flex gap-3 justify-content-center">
+  <button class="btn btn-success px-4" onclick="sendSMS('🍠당근..참석합니다.')">✅ 참석</button>
+  <button class="btn btn-outline-secondary px-4" onclick="sendSMS('😁 그날 제 자리가 비어 있지만… 마음만은 함께할게요 😉')">❌ 불참</button>
+  <button class="btn btn-outline-info px-4" onclick="sendSMS('💡그날 🌦️날씨·기분·운세 보고 결정 예정입니다! 🎲')">💡 잘모름</button>
+</div>
+        <button class="btn btn-sm btn-link text-muted" onclick="hideForOneDay()">⏳하루 동안 안 보기</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+<script>
+  function sendSMS(messageText) {
+    const phone = "01071186639";
+    const encodedMsg = encodeURIComponent(messageText);
+    const ua = navigator.userAgent.toLowerCase();
+    let smsLink = "";
+
+    if (/iphone|ipad|ipod/.test(ua)) {
+      smsLink = `sms:${phone}&body=${encodedMsg}`; // iOS용
+    } else if (/android/.test(ua)) {
+      smsLink = `sms:${phone}?body=${encodedMsg}`; // Android용
+    } else {
+      alert("⚠️ 문자 전송은 모바일(PAD) 기기에서만 가능합니다.");
+      return;
+    }
+
+    window.location.href = smsLink;
+  }
+</script>
+
+<!-- ✅ Bootstrap + Modal Logic -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // 하루 동안 보지 않기 기능
+  function hideForOneDay() {
+    const expireTime = new Date().getTime() + 24 * 60 * 60 * 1000; // 현재 시각 + 1일
+    localStorage.setItem("hideModalUntil", expireTime);
+    const modal = bootstrap.Modal.getInstance(document.getElementById('gatheringModal'));
+    modal.hide();
+  }
+
+  // 페이지 로딩 시 모달 표시 여부 결정
+  window.addEventListener('DOMContentLoaded', () => {
+    const now = new Date().getTime();
+    const expire = localStorage.getItem("hideModalUntil");
+
+    if (!expire || now > expire) {
+      const modal = new bootstrap.Modal(document.getElementById('gatheringModal'));
+      modal.show();
+    }
+  });
+</script>
+
+<!--날씨정보JS-->
+<script>
+  const API_KEY = "5cb4f4a8cabfb7ea5c72264e6a5fd43d";
+  const LAT = 38.0756;
+  const LON = 128.6200;
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${LAT}&lon=${LON}&appid=${API_KEY}&units=metric&lang=kr`;
+
+  fetch(url)
+    .then(response => {
+      if (!response.ok) throw new Error("HTTP 오류: " + response.status);
+      return response.json();
+    })
+    .then(data => {
+      document.getElementById('temperature').innerText = `🌡️ 강원 양양(서면)의 현재 기온은 ${data.main.temp}°C이며, 날씨는 ${data.weather[0].description} 상태 입니다.`;
+    })
+    .catch(error => {
+      document.getElementById('weather').innerHTML = `<p>❌ 날씨 정보를 불러오는 데 실패했습니다.</p>`;
+      console.error("Error fetching weather:", error);
+    });
+</script>
+
+<script>
+  document.getElementById("toggleallSeeBtn").addEventListener("click", function () {
+    if (confirm("📋 시트를 열어 전체 신형현황을 보시겠어요?")) {
+      window.open("https://docs.google.com/spreadsheets/d/1O5Rag6vpDlhmye9RdG-hqAaXOf-dR24h2UNWPlKCXsI/edit?usp=sharing", "_blank");
+    }
+  });
+</script>
+
+<!-- Bootstrap JS Bundle (body 맨 아래에 삽입) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  const carouselElement = document.querySelector('#mainCarousel');
+  const carousel = new bootstrap.Carousel(carouselElement, {
+    interval: 3000, // 3초마다 슬라이드
+    ride: 'carousel'
+  });
+</script>
+
+<script>
+document.getElementById("toggleEntryListBtn").addEventListener("click", function () {
+  const wrapper = document.getElementById("entryTableWrapper");
+  const totalCount = document.getElementById("totalCount");
+  const isVisible = wrapper.classList.contains("show");
+
+  if (isVisible) {
+    wrapper.classList.remove("show");
+    setTimeout(() => { wrapper.style.display = "none"; }, 500); // opacity 전환 후 display 제거
+    this.textContent = "🔎신청현황 보기";
+  } else {
+    wrapper.style.display = "block";
+    setTimeout(() => {
+      wrapper.classList.add("show");
+      totalCount.style.display = "inline";
+    }, 10); // display:block 직후 class 추가 (자연스러운 전환을 위해)
+    this.textContent = "🔼 신청현황 닫기";
+     // ✅ 테이블로 자연스럽게 스크롤 이동
+     setTimeout(() => {
+      wrapper.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 600); // fade-in 완료 후 이동 (0.6초 뒤)
+  }
+});
+
+</script>
+
+<script>
+    const participantsSelect = document.getElementById("participants");
+    const nonMembersSelect = document.getElementById("nonMembers");
+    const memberNamesGroup = document.getElementById("memberNamesGroup");
+    const memberNamesInput = document.getElementById("memberNames");
+  
+    // 조건 체크 함수
+    function checkMemberNameRequirement() {
+      const participants = parseInt(participantsSelect.value) || 0;
+      const nonMembers = parseInt(nonMembersSelect.value) || 0;
+  
+      if (!participants || !nonMembers) {
+        // 선택되지 않은 상태에서는 아무 처리하지 않음
+        memberNamesGroup.style.display = "none";
+        memberNamesInput.removeAttribute("required");
+        memberNamesInput.value = '';
+        return;
+      }
+  
+      const diff = participants - nonMembers;
+  
+      if (diff >= 2) {
+        alert("👬 동반회원을 입력해 주세요.");
+        memberNamesGroup.style.display = "flex";
+        memberNamesInput.setAttribute("required", "required");
+      } else {
+        memberNamesGroup.style.display = "none";
+        memberNamesInput.removeAttribute("required");
+        memberNamesInput.value = '';
+      }
+    }
+  
+    // 비회원 선택 시만 확인 실행
+    nonMembersSelect.addEventListener("change", checkMemberNameRequirement);
+  </script>
+  
+<script>
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbzXAhyAtzbodLAHxab0ZjOP6VyvlHiuvPbuL1xCMBAG5Ajj2gIVSkdhXGu4cCDontZb/exec";
+
+function submitForm() {
+  const submitBtn = document.querySelector('button.btn-primary');
+  submitBtn.disabled = true;
+  const originalText = submitBtn.innerHTML;
+  submitBtn.innerHTML = '🔄 제출중...';
+
+  const data = {
+    name: document.getElementById("name").value.trim(),
+    contact: document.getElementById("contact").value.trim(),
+    participants: document.getElementById("participants").value,
+    nonMembers: document.getElementById("nonMembers").value || '0',
+    memberNames: document.getElementById("memberNames").value.trim(),
+    course: document.getElementById("course").value,
+    comment: document.getElementById("comment").value.trim()
+  };
+
+  // ✅ 필수 입력 체크
+  if (!data.name || !data.contact || !data.participants || !data.course) {
+    alert("🤷‍♂️필수 항목(*)을 모두 입력해 주세요.");
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = originalText;
+    return;
+  }
+
+  // 연락처 유효성 검사
+  if (!/^\d{11}$/.test(data.contact)) {
+    alert("📱 연락처는 11자리여야 합니다. 확인해 주세요.");
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = originalText;
+    return;
+  }
+
+  // ✅ 동반회원 입력 필수 조건 검사
+  const total = parseInt(data.participants);
+  const nonMembers = parseInt(data.nonMembers);
+  const memberCount = total - nonMembers;
+
+  if (memberCount >= 2 && !data.memberNames) {
+    alert("👥 참가인원 중 동반회원이 있으시네요.\n동반회원을 입력해 주세요.");
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = originalText;
+    return;
+  }
+
+  // ✅ 제출 전 확인 메시지
+  const confirmMsg = `
+✅ 신청 내역을 확인해 주세요:
+
+성  명: ${data.name}
+연락처: ${data.contact}
+참가인원: ${data.participants}
+예(비)회원: ${data.nonMembers || '0명'}
+동반회원: ${data.memberNames || '없음'}
+선택코스: ${data.course}
+
+이대로 제출할까요?
+  `;
+
+  if (!confirm(confirmMsg)) {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = originalText;
+    return;
+  }
+
+  // ✅ 진동
+  if (navigator.vibrate) {
+    navigator.vibrate(100);
+  }
+
+  fetch(SHEET_URL, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: { "Content-Type": "application/json" },
+    mode: "no-cors"
+  })
+    .then(() => {
+      alert("✅ 신청이 완료되었습니다!");
+      window.scrollBy({ top: 150, behavior: 'smooth' });
+
+      loadEntries();
+
+      // 입력값 초기화
+      document.getElementById("name").value = '';
+      document.getElementById("contact").value = '';
+      document.getElementById("participants").value = '';
+      document.getElementById("nonMembers").value = '';
+      document.getElementById("memberNames").value = '';
+      document.getElementById("course").value = '';
+      document.getElementById("comment").value = '';
+    })
+    .catch(err => {
+      alert("❌ 신청 실패: " + err);
+    })
+    .finally(() => {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalText;
+    });
+}
+
+
+let deleteData = {}; // 취소(삭제) 관련 데이터 저장용 전역 변수
+
+function deleteEntry(time, name) {
+  // ✅ (대기) 라벨 제거
+  const cleanName = name.replace(/\(대기\)/g, '').trim();
+  alert("⚠️ 지금은 취소할 수 없어요. 한배를 탔습니다. 토요일까지 함께해 주세요");
+  /* if (!confirm(`${cleanName}님의 신청을 삭제 하시겠습니까? 삭제 => 확인`)) return;
+
+  const inputName = prompt("🤷‍♂️ 취소(삭제)를 위해 기존에 (오기)입력된 이름 그대로 입력해 주세요:");
+  if (!inputName || inputName.trim() !== cleanName) {
+    alert("⚠삭제취소. 이름이 미입력되었거나 일치하지 않습니다.");
+    return;
+  }
+
+  deleteData = { time, name: cleanName, inputName };
+  const modal = new bootstrap.Modal(document.getElementById('reasonModal'));
+  modal.show(); */
+}
+  
+  document.getElementById("confirmDelete").addEventListener("click", function (event) {
+    const form = document.getElementById("reasonForm");
+    const reason = form.deleteReason.value;
+  
+    if (!reason) {
+      alert("🤷‍♀️취소 사유를 선택해 주세요.");
+      return;
+    }
+  
+    const { time, name } = deleteData;
+    const formattedTime = new Date(time).toLocaleString('sv-SE').replace('T', ' ');
+  
+    const btn = event.target;
+    const originalText = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '🔄 취소 신청중...';
+  
+    fetch(SHEET_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "delete", time: formattedTime, name, reason })
+    })
+      .then(() => {
+        // ✅ Bootstrap 모달을 이 시점에 닫기
+        const modal = bootstrap.Modal.getInstance(document.getElementById('reasonModal'));
+        modal.hide();
+  
+        // ✅ alert 후 약간의 시간 후 리로드 → 버튼 상태 반영됨
+        setTimeout(() => {
+          alert("✅ 취소(삭제)되었습니다.\n다시 신청해 주세요.");
+          location.reload();
+        }, 300); // 약간의 딜레이를 줘야 UI가 먼저 반영됨
+      })
+      .catch(err => {
+        alert("❌ 삭제 실패: " + err);
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+      });
+  });
+
+  //신청내역확인 (검색)코드
+
+  let allData = []; // 전체 데이터를 전역 변수로 저장
+
+function loadEntries() {
+  fetch(SHEET_URL)
+    .then(res => res.json())
+    .then(data => {
+      allData = data; // ✅ reverse 제거
+      renderTable(allData);
+    });
+}
+
+const MAX_CAPACITY = 40;
+
+function renderTable(data) {
+  const tbody = document.getElementById("entryList");
+  const totalCountEl = document.getElementById("totalCount");
+  tbody.innerHTML = '';
+
+  let totalParticipants = 0;
+  let accumulated = 0;
+
+  // ✅ 먼저 원본 순서대로 isWaiting 계산
+  const markedData = data.map(row => {
+    const participants = Number(row.participants);
+    const validParticipants = isNaN(participants) ? 0 : participants;
+
+    const isWaiting = accumulated >= MAX_CAPACITY;
+    accumulated += validParticipants;
+
+    return { ...row, validParticipants, isWaiting };
+  });
+
+  // ✅ 최신순으로 표시 (역순)
+  markedData.reverse().forEach(row => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${row.name}${row.isWaiting ? ' <span class="text-danger fw-bold">(대기)</span>' : ''}</td>
+      <td>${row.validParticipants}</td>
+      <td>${row.course}</td>
+      <td>
+        <button class="btn btn-sm btn-warning" style="box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);" onclick="deleteEntry('${row.time}', '${row.name}')">
+          ⛔
+        </button>
+      </td>`;
+
+      if (row.isWaiting) {
+  tr.querySelectorAll('td').forEach(td => {
+    td.style.backgroundColor = '#fff4cc';  // ✅ 연한 노랑
+    /* td.style.fontWeight = 'bold'; */
+    td.style.color = '#6b4700'; // 텍스트는 부드러운 진한 색
+  });
+}
+    tbody.appendChild(tr);
+
+    totalParticipants += row.validParticipants;
+  });
+
+  totalCountEl.textContent = `| 👥총 신청 인원: ${totalParticipants}명 |`;
+}
+
+// ✅ 이름 검색 기능
+
+document.getElementById("searchInput").addEventListener("input", function () {
+  const keyword = this.value.trim().toLowerCase();
+  const filtered = allData.filter(row =>
+    row.name.toLowerCase().includes(keyword)
+  );
+  renderTable(filtered);
+});
+
+// ✅ 페이지 로드 후 자동 실행
+document.addEventListener("DOMContentLoaded", function () {
+  loadEntries();
+});
+</script>
+</body>
+</html>
